@@ -1,0 +1,10 @@
+.gis-dijit-MapInfo {
+  padding: 2px 6px;
+  overflow: hidden;
+  background: #f5f5f5;
+  color: #666;
+  font-size: 90%;
+  border-top: solid 1px #ddd;
+  border-right: solid 1px #ddd;
+  border-radius: 0 4px 0 0;
+}
