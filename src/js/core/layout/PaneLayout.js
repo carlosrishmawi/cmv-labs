@@ -10,7 +10,7 @@ define([
 
     'put-selector/put',
 
-    'xstyle/css!./CMVLayout/CMVLayout.css'
+    'xstyle/css!./PaneLayout/css/PaneLayout.css'
 ], function (
     declare,
     lang,
@@ -29,7 +29,7 @@ define([
         title: 'Configurable Map Viewer',
         subtitle: 'make it your own',
         logoProps: {
-            src: 'js/core/layout/CMVLayout/rocket-logo.png',
+            src: 'js/core/layout/PaneLayout/images/rocket-logo.png',
             height: 54,
             alt: 'logo'
         },
@@ -37,8 +37,8 @@ define([
             options = options || {};
 
             // put loading
-            this.loading = put(document.body, 'div.cmv-loading');
-            this.loading.innerHTML = '<div class="cmv-loading-content"><i class="fa fa-circle-o-notch fa-spin"></div>';
+            this.loading = put(document.body, 'div.cmvLoading');
+            this.loading.innerHTML = '<div class="cmvLoadingContent"><i class="fa fa-circle-o-notch fa-spin"></div>';
 
             var containerClass;
             if (options.header === true) {
@@ -47,18 +47,18 @@ define([
                 this.subtitle = options.subtitle || this.subtitle;
                 this.logoProps = options.logoProps || this.logoProps;
                 // put header
-                var header = put(document.body, 'div.cmv-header');
+                var header = put(document.body, 'div.cmvHeader');
                 // put logo
                 if (options.logo !== false) {
-                    put(header, 'img.cmv-header-logo', this.logoProps);
+                    put(header, 'img.cmvHeaderLogo', this.logoProps);
                 }
                 // the titles
-                var titleWrapper = put(header, 'div.cmv-header-title-wrapper');
-                put(titleWrapper, 'span.cmv-header-title', this.title);
-                put(titleWrapper, 'div.cmv-header-subtitle', this.subtitle);
-                containerClass = 'cmv-pane-container-header';
+                var titleWrapper = put(header, 'div.cmvHeaderTitleWrapper');
+                put(titleWrapper, 'span.cmvHeaderTitle', this.title);
+                put(titleWrapper, 'div.cmvHeaderSubtitle', this.subtitle);
+                containerClass = 'cmvPaneContainerHeader';
             } else {
-                containerClass = 'cmv-pane-container-full';
+                containerClass = 'cmvPaneContainerNoHeader';
             }
 
             // border container for panes
@@ -73,16 +73,18 @@ define([
             this.panes.center = new ContentPane({
                 region: 'center',
                 id: 'cmvMap',
-                className: 'cmv-map-pane'
+                className: 'map'
             });
             this.container.addChild(this.panes.center);
 
             // add panes
             array.forEach(options.panes, function (pane) {
+                // id and class like cmvLeftPane, cmvRightPane, etc
+                var paneIdClass = 'cmv' + pane.charAt(0).toUpperCase() + pane.substring(1) + 'Pane';
                 this.panes[pane] = new ContentPane({
                     region: pane,
-                    id: 'cmv' + pane.charAt(0).toUpperCase() + pane.substring(1) + 'Pane',
-                    className: 'cmv-' + pane + '-pane'
+                    id: paneIdClass,
+                    className: paneIdClass
                 });
                 this.container.addChild(this.panes[pane]);
             }, this);

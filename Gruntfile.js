@@ -329,7 +329,7 @@ module.exports = function(grunt) {
   // Development Tasks
   grunt.registerTask('dev-assets', 'Copies the assets', ['newer:copy:dev']);
   grunt.registerTask('dev-scripts', 'Lints the JavaScript files.', ['newer:jshint:dev']);
-  grunt.registerTask('dev-stylesheets', 'Creates the stylesheets.', ['newer:stylus:dev' /*, 'newer:autoprefixer:dev'*/ ]);
+  grunt.registerTask('dev-stylesheets', 'Creates the stylesheets.', ['newer:stylus:dev', 'newer:stylus:dev_widgets' /*, 'newer:autoprefixer:dev'*/ ]);
 
   // Production Build Tasks
   grunt.registerTask('assets', 'Copies and compiles the assets.', ['copy:build', 'htmlmin']);

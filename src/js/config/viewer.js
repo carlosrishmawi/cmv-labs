@@ -28,14 +28,14 @@ define([
     return {
         debug: true,
         layout: {
-            type: 'core/layout/CMVLayout',
+            type: 'core/layout/PaneLayout',
             options: {
                 // panes
                 // left, right, top and bottom panes (bc regions) with map center
-                // pane ids like cmvLeftPane, cmvBottomPanes, etc
+                // pane ids like cmvLeftPane, cmvBottomPane, etc
                 panes: ['left'],
                 collapsable: ['left'],
-                splitter: [],
+                splitters: [],
                 header: true
             }
         },
